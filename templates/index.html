@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Sales Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">SalesCast</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/"
+                        class="text-white font-medium underline decoration-blue-500 decoration-2 underline-offset-8">Home</a>
+                    <a href="/predict-page"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Predict</a>
+                    <a href="/model-info-page"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Model
+                        Info</a>
+                </div>
+                
+                <!-- Mobile hamburger button -->
+                <div class="flex items-center md:hidden">
+                    <button id="hamburger-button" class="text-gray-300 hover:text-white p-2 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Home</a>
+                <a href="/predict-page" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Predict</a>
+                <a href="/model-info-page" class="block px-3 py-2 rounded-md bg-blue-900/30 text-white font-medium">Model Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white pb-4">
+                    Predict Store Sales <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">with Precision</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-300">
+                    Advanced machine learning model to forecast item sales performance across different store outlets.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-x-6">
+                    <a href="/predict-page" class="px-8 py-3 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-purple-500/20">
+                        Make Prediction
+                    </a>
+                    <a href="/model-info-page" class="px-8 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors">
+                        Model Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16">Key Features</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="flex flex-col items-center text-center p-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Real-time Predictions</h3>
+                    <p class="text-gray-400">Get instant sales forecasts for any store item with our API.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center p-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-layer-group text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Batch Processing</h3>
+                    <p class="text-gray-400">Process multiple items at once for efficient forecasting.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center p-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Advanced Analytics</h3>
+                    <p class="text-gray-400">Leverage machine learning to uncover sales patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">API Endpoints</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:shadow-purple-500/5 transition-shadow border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium mr-2">POST</span>
+                        <h3 class="text-xl font-semibold">/predict</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Make a single prediction for an item's sales based on its attributes.</p>
+                    <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                        <pre class="text-gray-300 text-sm"><code>POST /predict
+Content-Type: application/json
+
+{
+  "Item_Identifier": "FDW58",
+  "Item_Weight": 20.75,
+  "Item_Fat_Content": "Low Fat",
+  ...
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:shadow-purple-500/5 transition-shadow border border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium mr-2">POST</span>
+                        <h3 class="text-xl font-semibold">/batch-predict</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Process multiple items at once for batch predictions.</p>
+                    <div class="bg-gray-900 p-4 rounded-lg overflow-x-auto">
+                        <pre class="text-gray-300 text-sm"><code>POST /batch-predict
+Content-Type: application/json
+
+[
+  {
+    "Item_Identifier": "FDW58",
+    ...
+  },
+  {
+    "Item_Identifier": "FDW59",
+    ...
+  }
+]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-chart-line text-xl text-gray-400 mr-2"></i>
+                    <span class="text-lg font-semibold text-gray-300">SalesCast</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 SalesCast. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle mobile menu visibility
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuButton.innerHTML = '<i class="fas fa-times text-xl"></i>';
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                });
+            });
+            
+            // Handle resize events
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) { // md breakpoint
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                }
+            });
+            
+            console.log('App initialized with mobile menu functionality');
+        });
+    </script>
+</body>
+</html>

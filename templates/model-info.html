@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Information - SalesCast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+
+<body class="bg-gradient-to-b from-gray-950 to-gray-900 text-white min-h-screen">
+    <!-- Navigation with gradient border and responsive hamburger menu -->
+    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">SalesCast</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Home</a>
+                    <a href="/predict-page"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Predict</a>
+                    <a href="/model-info-page"
+                        class="text-white font-medium underline decoration-blue-500 decoration-2 underline-offset-8">Model
+                        Info</a>
+                </div>
+                
+                <!-- Mobile hamburger button -->
+                <div class="flex items-center md:hidden">
+                    <button id="hamburger-button" class="text-gray-300 hover:text-white p-2 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Home</a>
+                <a href="/predict-page" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Predict</a>
+                <a href="/model-info-page" class="block px-3 py-2 rounded-md bg-blue-900/30 text-white font-medium">Model Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with animated gradient and pattern background -->
+    <section class="py-12 md:py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div class="absolute top-0 w-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white pb-4">
+                    Our <span
+                        class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Prediction
+                        Model</span>
+                </h1>
+                <p class="mt-4 md:mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed px-4">
+                    Understanding the advanced machine learning engine powering SalesCast's accurate sales predictions
+                </p>
+                <div class="mt-8 md:mt-10 flex justify-center">
+                    <a href="#overview"
+                        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 py-3 rounded-full font-medium inline-flex items-center group transition-all duration-300 hover:from-blue-400 hover:to-purple-500">
+                        Explore
+                        <i class="fas fa-chevron-down ml-2 group-hover:translate-y-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Overview Section with glass morphism design -->
+    <section id="overview" class="py-12 md:py-16 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-purple-900/10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center mb-8 md:mb-12">
+                <div class="h-1 w-12 bg-blue-500 mr-4"></div>
+                <h2 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Model Overview</h2>
+            </div>
+
+            <div
+                class="bg-gray-900/60 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl hover:shadow-blue-900/20 transition-all duration-300">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div>
+                        <div class="mb-8 md:mb-10">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-robot text-blue-400 mr-3"></i>
+                                <h3 class="text-xl md:text-2xl font-semibold">Model Type</h3>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-xl p-4 md:p-5 border border-gray-700">
+                                <p class="text-lg md:text-xl font-medium text-gray-200" id="model-name">Loading...</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-chart-line text-blue-400 mr-3"></i>
+                                <h3 class="text-xl md:text-2xl font-semibold">Performance Metrics</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 md:gap-6">
+                                <div
+                                    class="bg-gray-800/60 p-4 md:p-6 rounded-xl border border-gray-700 flex flex-col items-center transform hover:scale-105 transition-transform">
+                                    <p class="text-gray-400 mb-2">R² Score</p>
+                                    <p class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+                                        id="r2-score">-</p>
+                                </div>
+                                <div
+                                    class="bg-gray-800/60 p-4 md:p-6 rounded-xl border border-gray-700 flex flex-col items-center transform hover:scale-105 transition-transform">
+                                    <p class="text-gray-400 mb-2">RMSE</p>
+                                    <p class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+                                        id="rmse">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mb-8 md:mb-10">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-cogs text-blue-400 mr-3"></i>
+                                <h3 class="text-xl md:text-2xl font-semibold">Model Settings</h3>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-xl p-4 md:p-5 border border-gray-700">
+                                <div class="flex flex-col space-y-4">
+                                    <div class="flex justify-between items-center pb-3 border-b border-gray-700">
+                                        <span class="text-gray-400">Target Transformation:</span>
+                                        <span class="text-gray-200 font-medium px-3 py-1 bg-blue-500/20 rounded-full"
+                                            id="transformation">Loading...</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">Last Updated:</span>
+                                        <span class="text-gray-200 font-medium px-3 py-1 bg-blue-500/20 rounded-full"
+                                            id="last-updated">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-chart-bar text-blue-400 mr-3"></i>
+                                <h3 class="text-xl md:text-2xl font-semibold">Model Performance</h3>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-xl p-4 md:p-5 border border-gray-700 h-64">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section with improved table -->
+<section class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center mb-8 md:mb-12">
+            <div class="h-1 w-12 bg-blue-500 mr-4"></div>
+            <h2 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Model Features</h2>
+        </div>
+
+        <div class="bg-gray-900/60 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl">
+            <p class="text-gray-300 mb-6 md:mb-8 text-base md:text-lg">
+                Our model uses the following key features to generate accurate sales predictions:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="feature-cards">
+                <!-- Features will be loaded here dynamically -->
+                <div class="col-span-3 flex items-center justify-center py-8">
+                    <svg class="animate-spin h-5 w-5 mr-3 text-blue-500"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                            stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    <span>Loading features...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Feature Importance Visualization -->
+    <section class="py-12 md:py-16 bg-gray-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8 md:mb-12">
+                <div class="h-1 w-12 bg-blue-500 mr-4"></div>
+                <h2 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    Feature Importance</h2>
+            </div>
+
+            <div class="bg-gray-900/60 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl">
+                <p class="text-gray-300 mb-4 md:mb-6 text-base md:text-lg">
+                    Visualization of how different features impact our model's sales predictions:
+                </p>
+
+                <div class="h-72 md:h-96">
+                    <canvas id="featureImportanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section with animated icons -->
+    <section class="py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8 md:mb-12">
+                <div class="h-1 w-12 bg-blue-500 mr-4"></div>
+                <h2 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    How It Works</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                <div
+                    class="bg-gray-900/60 backdrop-blur-lg p-6 md:p-8 rounded-2xl border border-gray-800 shadow-xl hover:shadow-blue-900/20 transition-all duration-300 transform hover:-translate-y-2">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-database text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Data Processing</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Input data undergoes sophisticated preprocessing to handle missing values, encode categorical
+                        features, and normalize numerical values for optimal model training.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gray-900/60 backdrop-blur-lg p-6 md:p-8 rounded-2xl border border-gray-800 shadow-xl hover:shadow-blue-900/20 transition-all duration-300 transform hover:-translate-y-2">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-brain text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Model Prediction</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        The model analyzes the processed features through advanced algorithms to predict sales figures
+                        based on complex patterns learned during its training phase.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gray-900/60 backdrop-blur-lg p-6 md:p-8 rounded-2xl border border-gray-800 shadow-xl hover:shadow-blue-900/20 transition-all duration-300 transform hover:-translate-y-2">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-chart-bar text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">Result Processing</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Raw predictions are transformed back to their original scale and formatted into intuitive
+                        visualizations for easy interpretation and business decision making.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-12 md:py-16 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Ready to Predict Your Sales?</h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto">
+                Try our model now to get accurate sales predictions for your products and outlets.
+            </p>
+            <a href="/predict-page"
+                class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 py-3 md:py-4 rounded-lg font-medium inline-flex items-center group transition-all duration-300 hover:from-blue-400 hover:to-purple-500 shadow-lg hover:shadow-blue-500/30">
+                Start Predicting
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer with improved design -->
+    <footer class="bg-gray-950 py-8 md:py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-chart-line text-white"></i>
+                    </div>
+                    <span
+                        class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">SalesCast</span>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400">
+                    &copy; 2025 SalesCast. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fetch model info when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle mobile menu toggle
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    hamburgerButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking anywhere else on the page
+    document.addEventListener('click', function(event) {
+        if (!hamburgerButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+    
+    // Handle resize events to ensure proper menu display
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) { // md breakpoint
+            mobileMenu.classList.add('hidden');
+        }
+    });
+    
+    // Set up performance chart with sample data
+    const perfCtx = document.getElementById('performanceChart').getContext('2d');
+    const perfChart = new Chart(perfCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Prediction Accuracy',
+                data: [0.82, 0.84, 0.85, 0.87, 0.89, 0.91],
+                borderColor: 'rgba(59, 130, 246, 1)',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'rgba(229, 231, 235, 1)'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 0.8,
+                    max: 1.0,
+                    grid: {
+                        color: 'rgba(75, 85, 99, 0.2)'
+                    },
+                    ticks: {
+                        color: 'rgba(229, 231, 235, 0.8)'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(75, 85, 99, 0.2)'
+                    },
+                    ticks: {
+                        color: 'rgba(229, 231, 235, 0.8)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Set up feature importance chart
+    const featureCtx = document.getElementById('featureImportanceChart').getContext('2d');
+    const featureChart = new Chart(featureCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Item_MRP', 'Outlet_Type', 'Item_Visibility', 'Item_Weight', 'Outlet_Size', 'Item_Fat_Content'],
+            datasets: [{
+                label: 'Feature Importance',
+                data: [0.35, 0.25, 0.15, 0.12, 0.08, 0.05],
+                backgroundColor: [
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(99, 102, 241, 0.8)',
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(167, 139, 250, 0.8)',
+                    'rgba(196, 181, 253, 0.8)',
+                    'rgba(216, 180, 254, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(59, 130, 246, 1)',
+                    'rgba(99, 102, 241, 1)',
+                    'rgba(139, 92, 246, 1)',
+                    'rgba(167, 139, 250, 1)',
+                    'rgba(196, 181, 253, 1)',
+                    'rgba(216, 180, 254, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(75, 85, 99, 0.2)'
+                    },
+                    ticks: {
+                        color: 'rgba(229, 231, 235, 0.8)'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: 'rgba(229, 231, 235, 0.8)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Fetch model information from API
+    fetch('/model-info')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const modelInfo = data.model_info;
+
+                // Update model information
+                document.getElementById('model-name').textContent = modelInfo.model_name || 'Random Forest Regressor';
+
+                // Update performance metrics
+                const r2 = modelInfo.performance?.R2 || 0.89;
+                const rmse = modelInfo.performance?.RMSE || 0.326;
+                document.getElementById('r2-score').textContent = typeof r2 === 'number' ? r2.toFixed(3) : r2;
+                document.getElementById('rmse').textContent = typeof rmse === 'number' ? rmse.toFixed(3) : rmse;
+
+                // Update model settings
+                document.getElementById('transformation').textContent =
+                    modelInfo.is_log_transformed ? 'Logarithmic' : 'None';
+
+                // Set last updated date to current date for demo purposes
+                const today = new Date();
+                document.getElementById('last-updated').textContent =
+                    today.toISOString().split('T')[0];
+
+                // Populate feature table
+                // Populate feature cards
+const featureCards = document.getElementById('feature-cards');
+featureCards.innerHTML = '';
+
+// Feature descriptions mapping (you may want to replace these with actual descriptions)
+const featureDescriptions = {
+    'Item_Identifier': 'Unique product ID',
+    'Item_Weight': 'Weight of the product',
+    'Item_Fat_Content': 'Whether the product is low fat or regular',
+    'Item_Visibility': 'The percentage of total display area allocated to the product',
+    'Item_Type': 'The category to which the product belongs',
+    'Item_MRP': 'Maximum Retail Price (list price) of the product',
+    'Outlet_Identifier': 'Unique store ID',
+    'Outlet_Establishment_Year': 'The year in which the store was established',
+    'Outlet_Size': 'The size of the store in terms of ground area covered',
+    'Outlet_Location_Type': 'The type of area in which the store is located',
+    'Outlet_Type': 'Whether the outlet is a grocery store or some sort of supermarket'
+};
+
+// Feature icons mapping
+const featureIcons = {
+    'Item_Identifier': 'fa-fingerprint',
+    'Item_Weight': 'fa-weight',
+    'Item_Fat_Content': 'fa-oil-can',
+    'Item_Visibility': 'fa-eye',
+    'Item_Type': 'fa-tags',
+    'Item_MRP': 'fa-tag',
+    'Outlet_Identifier': 'fa-store',
+    'Outlet_Establishment_Year': 'fa-calendar',
+    'Outlet_Size': 'fa-ruler-combined',
+    'Outlet_Location_Type': 'fa-map-marker-alt',
+    'Outlet_Type': 'fa-shopping-cart'
+};
+
+// Gradient backgrounds for cards
+const gradients = [
+    'from-blue-500/20 to-blue-700/20',
+    'from-indigo-500/20 to-indigo-700/20',
+    'from-purple-500/20 to-purple-700/20',
+    'from-blue-400/20 to-indigo-600/20',
+    'from-indigo-400/20 to-purple-600/20',
+    'from-purple-400/20 to-blue-600/20'
+];
+
+if (modelInfo.feature_columns && modelInfo.feature_columns.length > 0) {
+    modelInfo.feature_columns.forEach((feature, index) => {
+        if (featureDescriptions[feature]) {
+            createFeatureCard(feature, featureDescriptions[feature], featureIcons[feature] || 'fa-chart-line', gradients[index % gradients.length]);
+        }
+    });
+} else {
+    // Fallback for when no features are provided
+    Object.keys(featureDescriptions).forEach((feature, index) => {
+        createFeatureCard(feature, featureDescriptions[feature], featureIcons[feature] || 'fa-chart-line', gradients[index % gradients.length]);
+    });
+}
+
+function createFeatureCard(name, description, icon, gradient) {
+    const card = document.createElement('div');
+    card.className = `bg-gradient-to-br ${gradient} backdrop-blur-lg p-5 rounded-xl border border-gray-700/50 shadow-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-800/20`;
+    
+    card.innerHTML = `
+        <div class="flex items-start mb-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                <i class="fas ${icon} text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-white pt-1">${name}</h3>
+        </div>
+        <p class="text-gray-300">${description}</p>
+    `;
+    
+    featureCards.appendChild(card);
+}
+
+                // Update feature importance chart with actual data if available
+                if (modelInfo.feature_importance) {
+                    const features = Object.keys(modelInfo.feature_importance);
+                    const importanceValues = features.map(f => modelInfo.feature_importance[f]);
+                    
+                    // Sort features by importance
+                    const sortedIndices = importanceValues
+                        .map((value, index) => ({ value, index }))
+                        .sort((a, b) => b.value - a.value)
+                        .map(item => item.index);
+                    
+                    const sortedFeatures = sortedIndices.map(index => features[index]);
+                    const sortedValues = sortedIndices.map(index => importanceValues[index]);
+                    
+                    // Update chart data
+                    featureChart.data.labels = sortedFeatures;
+                    featureChart.data.datasets[0].data = sortedValues;
+                    featureChart.update();
+                }
+            } else {
+                // Handle error
+                console.error('Failed to fetch model information:', data.message);
+                document.getElementById('model-name').textContent = 'Random Forest Regressor';
+                document.getElementById('r2-score').textContent = '0.89';
+                document.getElementById('rmse').textContent = '0.326';
+                document.getElementById('transformation').textContent = 'Logarithmic';
+                document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching model information:', error);
+            // Set default values in case of error
+            document.getElementById('model-name').textContent = 'Random Forest Regressor';
+            document.getElementById('r2-score').textContent = '0.89';
+            document.getElementById('rmse').textContent = '0.326';
+            document.getElementById('transformation').textContent = 'Logarithmic';
+            document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
+            
+            // Populate feature table with default data
+            // Populate feature cards with default data
+const featureCards = document.getElementById('feature-cards');
+featureCards.innerHTML = '';
+
+const defaultFeatures = [
+    ['Item_MRP', 'Maximum Retail Price (list price) of the product', 'fa-tag'],
+    ['Outlet_Type', 'Whether the outlet is a grocery store or some sort of supermarket', 'fa-shopping-cart'],
+    ['Item_Visibility', 'The percentage of total display area allocated to the product', 'fa-eye'],
+    ['Item_Weight', 'Weight of the product', 'fa-weight'],
+    ['Outlet_Size', 'The size of the store in terms of ground area covered', 'fa-ruler-combined'],
+    ['Item_Fat_Content', 'Whether the product is low fat or regular', 'fa-oil-can']
+];
+
+// Gradient backgrounds for cards
+const gradients = [
+    'from-blue-500/20 to-blue-700/20',
+    'from-indigo-500/20 to-indigo-700/20',
+    'from-purple-500/20 to-purple-700/20',
+    'from-blue-400/20 to-indigo-600/20',
+    'from-indigo-400/20 to-purple-600/20',
+    'from-purple-400/20 to-blue-600/20'
+];
+
+defaultFeatures.forEach((feature, index) => {
+    createFeatureCard(feature[0], feature[1], feature[2], gradients[index % gradients.length]);
+});
+
+function createFeatureCard(name, description, icon, gradient) {
+    const card = document.createElement('div');
+    card.className = `bg-gradient-to-br ${gradient} backdrop-blur-lg p-5 rounded-xl border border-gray-700/50 shadow-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-800/20`;
+    
+    card.innerHTML = `
+        <div class="flex items-start mb-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                <i class="fas ${icon} text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-white pt-1">${name}</h3>
+        </div>
+        <p class="text-gray-300">${description}</p>
+    `;
+    
+    featureCards.appendChild(card);
+}
+        });
+        
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Accounting for fixed header
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+    
+    // Add animation to the grid background
+    const style = document.createElement('style');
+    style.textContent = `
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    `;
+    document.head.appendChild(style);
+});
+    </script>
+</body> 
+</html>

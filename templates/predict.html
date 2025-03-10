@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Sales - SalesCast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-black text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">SalesCast</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Home</a>
+                    <a href="/predict-page"
+                        class="text-white font-medium underline decoration-blue-500 decoration-2 underline-offset-8">Predict</a>
+                    <a href="/model-info-page"
+                        class="text-gray-300 hover:text-white transition-colors hover:underline decoration-blue-500 decoration-2 underline-offset-8">Model
+                        Info</a>
+                </div>
+
+                <!-- Mobile hamburger button -->
+                <div class="flex items-center md:hidden">
+                    <button id="hamburger-button" class="text-gray-300 hover:text-white p-2 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Home</a>
+                <a href="/predict-page"
+                    class="block px-3 py-2 rounded-md bg-blue-900/30 text-white font-medium">Predict</a>
+                <a href="/model-info-page"
+                    class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:text-white">Model Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white">
+                    Predict Store <span
+                        class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Sales</span>
+                </h1>
+                <p class="mt-4 text-xl text-gray-300">
+                    Enter item details to get sales predictions
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Form -->
+    <section class="pb-16 sm:pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-800 shadow-xl shadow-purple-500/5">
+                <div class="mb-6 sm:mb-8 flex flex-col sm:flex-row justify-between sm:items-center">
+                    <h2 class="text-2xl font-bold mb-2 sm:mb-0">Item Details</h2>
+                    <button id="load-sample"
+                        class="text-sm text-blue-400 hover:text-blue-300 self-start sm:self-auto">Load Sample
+                        Data</button>
+                </div>
+
+                <form id="prediction-form" method="post" action="/predict">
+                    <!-- Item Information -->
+                    <div class="bg-black/30 p-4 sm:p-6 rounded-xl border border-gray-800 mb-6 sm:mb-8">
+                        <h3 class="text-xl font-semibold mb-4">Item Information</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div>
+                                <label for="Item_Identifier" class="block text-sm font-medium text-gray-400 mb-1">Item
+                                    Identifier</label>
+                                <input type="text" id="Item_Identifier" name="Item_Identifier" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="Item_Weight" class="block text-sm font-medium text-gray-400 mb-1">Item
+                                    Weight</label>
+                                <input type="number" id="Item_Weight" name="Item_Weight" step="0.01" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="Item_Fat_Content" class="block text-sm font-medium text-gray-400 mb-1">Fat
+                                    Content</label>
+                                <select id="Item_Fat_Content" name="Item_Fat_Content" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Fat Content</option>
+                                    <option value="Low Fat">Low Fat</option>
+                                    <option value="Regular">Regular</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Item_Visibility" class="block text-sm font-medium text-gray-400 mb-1">Item
+                                    Visibility</label>
+                                <input type="number" id="Item_Visibility" name="Item_Visibility" step="0.001" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="Item_Type" class="block text-sm font-medium text-gray-400 mb-1">Item
+                                    Type</label>
+                                <select id="Item_Type" name="Item_Type" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Item Type</option>
+                                    <option value="Dairy">Dairy</option>
+                                    <option value="Soft Drinks">Soft Drinks</option>
+                                    <option value="Meat">Meat</option>
+                                    <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+                                    <option value="Household">Household</option>
+                                    <option value="Baking Goods">Baking Goods</option>
+                                    <option value="Snack Foods">Snack Foods</option>
+                                    <option value="Frozen Foods">Frozen Foods</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Health and Hygiene">Health and Hygiene</option>
+                                    <option value="Hard Drinks">Hard Drinks</option>
+                                    <option value="Canned">Canned</option>
+                                    <option value="Breads">Breads</option>
+                                    <option value="Starchy Foods">Starchy Foods</option>
+                                    <option value="Others">Others</option>
+                                    <option value="Seafood">Seafood</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Item_MRP" class="block text-sm font-medium text-gray-400 mb-1">Item
+                                    MRP</label>
+                                <input type="number" id="Item_MRP" name="Item_MRP" step="0.01" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outlet Information -->
+                    <div class="bg-black/30 p-4 sm:p-6 rounded-xl border border-gray-800 mb-6 sm:mb-8">
+                        <h3 class="text-xl font-semibold mb-4">Outlet Information</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div>
+                                <label for="Outlet_Identifier"
+                                    class="block text-sm font-medium text-gray-400 mb-1">Outlet Identifier</label>
+                                <input type="text" id="Outlet_Identifier" name="Outlet_Identifier" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="Outlet_Establishment_Year"
+                                    class="block text-sm font-medium text-gray-400 mb-1">Establishment Year</label>
+                                <input type="number" id="Outlet_Establishment_Year" name="Outlet_Establishment_Year"
+                                    min="1900" max="2025" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="Outlet_Size" class="block text-sm font-medium text-gray-400 mb-1">Outlet
+                                    Size</label>
+                                <select id="Outlet_Size" name="Outlet_Size" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Outlet Size</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Outlet_Location_Type"
+                                    class="block text-sm font-medium text-gray-400 mb-1">Location Type</label>
+                                <select id="Outlet_Location_Type" name="Outlet_Location_Type" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Location Type</option>
+                                    <option value="Tier 1">Tier 1</option>
+                                    <option value="Tier 2">Tier 2</option>
+                                    <option value="Tier 3">Tier 3</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Outlet_Type" class="block text-sm font-medium text-gray-400 mb-1">Outlet
+                                    Type</label>
+                                <select id="Outlet_Type" name="Outlet_Type" required
+                                    class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select Outlet Type</option>
+                                    <option value="Grocery Store">Grocery Store</option>
+                                    <option value="Supermarket Type1">Supermarket Type1</option>
+                                    <option value="Supermarket Type2">Supermarket Type2</option>
+                                    <option value="Supermarket Type3">Supermarket Type3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" id="predict-button"
+                            class="w-full bg-gradient-to-r from-blue-400 to-purple-500 text-white py-3 px-4 rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-purple-500/20">
+                            Predict Sales
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Results Section (Hidden by Default) -->
+                <div id="results-section" class="mt-10 sm:mt-12 hidden">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <h2 class="text-2xl font-bold mr-2">Prediction Results</h2>
+                        <div id="loading-spinner" class="hidden">
+                            <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gray-800 rounded-xl p-6 sm:p-8 border border-gray-700 shadow-lg shadow-purple-500/10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                            <div>
+                                <p class="text-gray-400 text-sm mb-1">Predicted Sales</p>
+                                <div class="flex items-end">
+                                    <span id="prediction-value"
+                                        class="text-3xl sm:text-4xl font-bold text-white">$0.00</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex flex-col h-full justify-end">
+                                    <p class="text-gray-400 mb-2">Item: <span id="result-item-id"
+                                            class="text-white">-</span></p>
+                                    <p class="text-gray-400 mb-2">Outlet: <span id="result-outlet-id"
+                                            class="text-white">-</span></p>
+                                    <p class="text-gray-400">Price: <span id="result-item-mrp"
+                                            class="text-white">-</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">
+                    How <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">It
+                        Works</span>
+                </h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                    SalesCast uses advanced machine learning to accurately predict retail item sales
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl shadow-purple-500/5 text-center">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-clipboard-list text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Enter Details</h3>
+                    <p class="text-gray-400">
+                        Input item and outlet information in the form above with all the required specifications.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl shadow-purple-500/5 text-center">
+                    <div class="w-16 h-16 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-brain text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">ML Prediction</h3>
+                    <p class="text-gray-400">
+                        Our advanced machine learning model processes your data using patterns from millions of
+                        transactions.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl shadow-purple-500/5 text-center">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-chart-bar text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Get Results</h3>
+                    <p class="text-gray-400">
+                        Receive accurate sales predictions that help you make informed inventory and pricing decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">
+                    Frequently Asked <span
+                        class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Questions</span>
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-semibold text-white mb-2">How accurate are the predictions?</h3>
+                    <p class="text-gray-300">
+                        Our model achieves 85-87% accuracy on test data. It's trained on thousands of retail transactions
+                        and continually improves with new data.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-semibold text-white mb-2">What factors influence sales predictions the most?
+                    </h3>
+                    <p class="text-gray-300">
+                        Item MRP (price), outlet type, and item visibility have the strongest influence on predictions.
+                        Item type and outlet location also play significant roles.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-semibold text-white mb-2">Can I use this for my own business?</h3>
+                    <p class="text-gray-300">
+                        Yes! SalesCast is designed for retail businesses of all sizes. Contact us for custom integration
+                        with your existing inventory and sales systems.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-semibold text-white mb-2">How often is the model updated?</h3>
+                    <p class="text-gray-300">
+                        Our models are retrained monthly with the latest sales data to ensure predictions remain
+                        accurate with changing market conditions and consumer behaviors.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
+                    <h3 class="text-xl font-semibold text-white mb-2">What data do I need to provide?</h3>
+                    <p class="text-gray-300">
+                        Just the basic information you see in the form: item details (identifier, weight, type, etc.)
+                        and outlet information. No sensitive customer data is required.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-chart-line text-xl text-gray-400 mr-2"></i>
+                    <span class="text-lg font-semibold text-gray-300">SalesCast</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    &copy; 2025 SalesCast. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('prediction-form');
+            const loadSampleBtn = document.getElementById('load-sample');
+            const resultsSection = document.getElementById('results-section');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mobileMenuButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Mobile menu functionality
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    // Toggle mobile menu visibility
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+
+                // Close menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+
+                // Handle resize events
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth >= 768) { // md breakpoint
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Sample data
+            const sampleData = {
+                "Item_Identifier": "FDW58",
+                "Item_Weight": 20.75,
+                "Item_Fat_Content": "Low Fat",
+                "Item_Visibility": 0.007565,
+                "Item_Type": "Snack Foods",
+                "Item_MRP": 107.8622,
+                "Outlet_Identifier": "OUT049",
+                "Outlet_Establishment_Year": 1999,
+                "Outlet_Size": "Medium",
+                "Outlet_Location_Type": "Tier 1",
+                "Outlet_Type": "Supermarket Type1"
+            };
+
+            // Load sample data
+            loadSampleBtn.addEventListener('click', function () {
+                Object.keys(sampleData).forEach(key => {
+                    const input = document.getElementById(key);
+                    if (input) {
+                        input.value = sampleData[key];
+                    }
+                });
+            });
+
+            // Form submission
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    // Show loading spinner and results section
+                    loadingSpinner.classList.remove('hidden');
+                    resultsSection.classList.remove('hidden');
+
+                    // Get form data
+                    const formData = new FormData(form);
+                    const formObject = {};
+
+                    // Convert FormData to object
+                    formData.forEach((value, key) => {
+                        formObject[key] = value;
+                    });
+
+                    // Make fetch request
+                    fetch('/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formObject)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw new Error(data.error || 'Server error: ' + response.status);
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Hide loading spinner
+                            loadingSpinner.classList.add('hidden');
+
+                            if (data.status === 'error') {
+                                alert('Error: ' + data.error);
+                                return;
+                            }
+
+                            // Update results
+                            document.getElementById('prediction-value').textContent = data.prediction_formatted || '$0.00';
+                            document.getElementById('result-item-id').textContent = data.item_data.Item_Identifier;
+                            document.getElementById('result-outlet-id').textContent = data.item_data.Outlet_Identifier;
+                            document.getElementById('result-item-mrp').textContent = `$${parseFloat(data.item_data.Item_MRP).toFixed(2)}`;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            loadingSpinner.classList.add('hidden');
+                            alert('Error: ' + error.message);
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
